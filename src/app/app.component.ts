@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Birthday } from './specific-birthday/specific-birthday';
+import {formatDate} from '@angular/common';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'birthday-app';
+  list: Birthday[] = [
+    {
+      name: 'Hailey',
+      birthdate: new Date(1998, 11, 24),
+      notes: "Chrsitmas Eve"
+    },
+    {
+      name: 'Jacob',
+      birthdate: new Date(1998, 1, 18),
+      notes: "I love him"
+    }
+  ];
 }
