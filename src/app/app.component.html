@@ -2,4 +2,16 @@
   <mat-icon>cake</mat-icon>
   <span>Birthday App</span>
 </mat-toolbar>
-<app-specific-birthday *ngFor="let birthday of list" [birthday]="birthday"></app-specific-birthday>
+<app-specific-birthday *ngFor="let birthday of bday_list" [birthday]="birthday"></app-specific-birthday>
+
+  
+  <div class="content-wrapper">
+    <button (click)="newTask()" mat-button>
+      <mat-icon>add</mat-icon> Add Birthday
+    </button>
+  
+    <div class="container-wrapper">
+      <div class="container">
+        ...
+      </div>
+  </div>

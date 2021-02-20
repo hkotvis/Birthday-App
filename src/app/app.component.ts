@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Birthday } from './specific-birthday/specific-birthday';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskDialogComponent, TaskDialogResult } from './task-dialog/task-dialog.component';
+
 
 
 
@@ -10,7 +13,7 @@ import { Birthday } from './specific-birthday/specific-birthday';
 })
 export class AppComponent {
   title = 'birthday-app';
-  list: Birthday[] = [
+  bday_list: Birthday[] = [
     {
       name: 'Hailey',
       birthdate: new Date(1998, 11, 24),
@@ -22,4 +25,18 @@ export class AppComponent {
       notes: "I love him"
     }
   ];
+
+  constructor(private dialog: MatDialog) {}
+
+  newTask(): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '270px',
+      data: {
+        task: {},
+      },
+    });
+    dialogRef
+      .afterClosed()
+      .subscribe((result: TaskDialogResult) => this.bday_list.push(result.task));
+  }
 }
