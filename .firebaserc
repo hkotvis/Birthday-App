@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "birthday-app-d0f40": {
+      "hosting": {
+        "birthday-app": [
+          "birthday-app-d0f40"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "birthday-app-d0f40"
+  }
+}

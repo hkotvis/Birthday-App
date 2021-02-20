@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Birthday } from './specific-birthday/specific-birthday';
-import {formatDate} from '@angular/common';
 
 
 
