@@ -1,1 +1,6 @@
-<p>list-birthday works!</p>
+<mat-card class="item" (dblclick)="edit.emit(birthday)">
+    <h2>{{ birthday.name }}</h2>
+    <p>
+      {{ birthday.birthdate }}<br> {{birthday.notes}}
+    </p>
+</mat-card>

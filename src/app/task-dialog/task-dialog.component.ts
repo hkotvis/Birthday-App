@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Birthday } from '../specific-birthday/specific-birthday';
+import { Birthday } from '../list-birthday/iBirthday';
 
 @Component({
   selector: 'app-task-dialog',

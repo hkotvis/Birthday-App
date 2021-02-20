@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Birthday } from './specific-birthday/specific-birthday';
+import { Birthday } from './list-birthday/iBirthday';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent, TaskDialogResult } from './task-dialog/task-dialog.component';
 

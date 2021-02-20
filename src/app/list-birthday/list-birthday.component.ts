@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Birthday } from './iBirthday';
+import { Component,  Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-birthday',
   templateUrl: './list-birthday.component.html',
   styleUrls: ['./list-birthday.component.css']
 })
-export class ListBirthdayComponent implements OnInit {
+export class ListBirthdayComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @Input()  birthday: Birthday;
+  @Output() edit = new EventEmitter<Birthday>();
   }
 
-}
+

@@ -11,14 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SpecificBirthdayComponent } from './specific-birthday/specific-birthday.component';
 import { ListBirthdayComponent } from './list-birthday/list-birthday.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpecificBirthdayComponent,
     ListBirthdayComponent,
     TaskDialogComponent
   ],
