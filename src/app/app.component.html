@@ -2,7 +2,8 @@
   <mat-icon>cake</mat-icon>
   <span>Birthday App</span>
 </mat-toolbar>
-<app-list-birthday *ngFor="let birthday of bday_list" [birthday]="birthday"></app-list-birthday>
+<app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" (click)="editTask($event)"></app-list-birthday>
+
 
   
   <div class="content-wrapper">

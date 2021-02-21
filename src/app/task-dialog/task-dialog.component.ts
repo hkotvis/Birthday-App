@@ -8,7 +8,7 @@ import { Birthday } from '../list-birthday/iBirthday';
   styleUrls: ['./task-dialog.component.css'],
 })
 export class TaskDialogComponent {
-  private backupTask: Partial<Birthday> = { ...this.data.task };
+  private backupTask: Partial<Birthday> = { ...this.data.birthday };
 
   constructor(
     public dialogRef: MatDialogRef<TaskDialogComponent>,
@@ -16,18 +16,19 @@ export class TaskDialogComponent {
   ) {}
 
   cancel(): void {
-    this.data.task.name = this.backupTask.name;
-    this.data.task.birthdate = this.backupTask.birthdate;
+    this.data.birthday.name = this.backupTask.name;
+    this.data.birthday.birthdate = this.backupTask.birthdate;
+    this.data.birthday.notes = this.backupTask.notes;
     this.dialogRef.close(this.data);
   }
 }
 
 export interface TaskDialogData {
-  task: Partial<Birthday>;
+  birthday: Partial<Birthday>;
   enableDelete: boolean;
 }
 
 export interface TaskDialogResult {
-  task: Birthday;
+  birthday: Birthday;
   delete?: boolean;
 }

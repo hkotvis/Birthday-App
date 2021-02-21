@@ -14,6 +14,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListBirthdayComponent } from './list-birthday/list-birthday.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,9 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
