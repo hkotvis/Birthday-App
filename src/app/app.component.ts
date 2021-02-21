@@ -2,10 +2,17 @@ import { Component } from '@angular/core';
 import { Birthday } from './list-birthday/iBirthday';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent, TaskDialogResult } from './task-dialog/task-dialog.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 
-
+const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
+  const subject = new BehaviorSubject([]);
+  collection.valueChanges({ idField: 'id' }).subscribe((val: Birthday[]) => {
+    subject.next(val);
+  });
+  return subject;
+};
 
 @Component({
   selector: 'app-root',
@@ -13,21 +20,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
+  bday_list = getObservable(this.store.collection('birthdays'));
+
+
+  //bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   usersDb = this.store.collection('users').valueChanges({ idField: 'id' });
   title = 'birthday-app';
- /* bday_list: Birthday[] = [
-    {
-      name: 'Hailey',
-      birthdate: new Date(1998, 11, 24),
-      notes: "Chrsitmas Eve"
-    },
-    {
-      name: 'Jacob',
-      birthdate: new Date(1998, 1, 18),
-      notes: "I love him"
-    }
-  ];*/
+
  
 
   editTask(birthday: Birthday): void {
