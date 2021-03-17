@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListBirthdayComponent } from './list-birthday/list-birthday.component';
-import { TaskDialogComponent } from './task-dialog/task-dialog.component';
+import { BirthdayDialogComponent } from './birthday-dialog/birthday-dialog.component';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -22,12 +22,16 @@ import {MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListBirthdayComponent,
-    TaskDialogComponent
+    BirthdayDialogComponent,
+    LoginComponent,
+    BirthdayPageComponent
   ],
   imports: [
     BrowserModule,
