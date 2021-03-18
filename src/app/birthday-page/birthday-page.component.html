@@ -1,6 +1,6 @@
 <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" (click)="editBirthday(this.birthday)"></app-list-birthday>
 <p class="empty-label" *ngIf="(bday_list | async)?.length === 0">Empty list</p>
-
+ <!--
 <div class="content-wrapper">
     <button (click)="newBirthday()" mat-button>
       <mat-icon>add</mat-icon> Add Birthday
@@ -11,3 +11,5 @@
       
       </div>
   </div>
+-->
+  <!--<div *ngIf="!authService.user as user">-->

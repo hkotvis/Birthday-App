@@ -1,11 +1,22 @@
-<mat-toolbar color="primary">
-  <mat-icon>cake</mat-icon>
-  <span>Birthday App</span>
-  <nav>
-    <a routerLink="/list">Birthday List</a>
-    <a routerLink="/login">Login</a>
-  </nav>
+<mat-toolbar color="primary" *ngIf="authService.isLoggedIn">
+  <mat-toolbar-row>
+    <span>BIRTHDAY PLANNER</span>
+    <span class="example-spacer"></span>
+    <nav>
+      <mat-icon routerLink="/login" (click)="authService.logout()" ><mat-icon>logout</mat-icon></mat-icon>
+    </nav>
+  </mat-toolbar-row>
+  <mat-toolbar-row >
+    <mat-icon style="flex: auto;" routerLink="/list">format_list_bulleted</mat-icon>
+
+  
+    <mat-icon style="flex: auto;" routerLink="/list">date_range</mat-icon>
+    
+    <mat-icon (click)="newBirthday()">add_box_outline</mat-icon>
+  
+  </mat-toolbar-row>
 </mat-toolbar>
+
 <router-outlet></router-outlet>
 
 

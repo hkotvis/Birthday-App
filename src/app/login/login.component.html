@@ -1,5 +1,8 @@
 <mat-card>
   <form [formGroup]="signin">
+    <br/><br/>
+      <h2 color="primary">BIRTHDAY PLANNER</h2>
+      <i class="material-icons-round" color="primary">celebration</i><br><br/>
     <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput #userEmail required />
@@ -9,7 +12,8 @@
          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" #userPassword required>
          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
      </mat-form-field>
-     <br/>
-     <button mat-button (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+     <br/><br/><br/>
+     <button mat-raised-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+     <br/><br/><br/><br/>
    </form>
 </mat-card>

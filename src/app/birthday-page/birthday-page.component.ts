@@ -5,6 +5,8 @@ import { BirthdayDialogComponent, BirthdayDialogResult } from '../birthday-dialo
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { ListBirthdayComponent } from '../list-birthday/list-birthday.component';
+import { User } from '../auth/user';
+import { AuthService } from '../auth/auth.service';
 
 
 const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
@@ -23,7 +25,7 @@ const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
 })
 export class BirthdayPageComponent {
  // bday_list = getObservable(this.store.collection('birthdays'));
-  
+
 
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   usersDb = this.store.collection('users').valueChanges({ idField: 'id' });
@@ -48,9 +50,7 @@ export class BirthdayPageComponent {
     });
   }
 
-  constructor(private dialog: MatDialog, private store: AngularFirestore) {
-    console.log(this.bday_list);
-  }
+  constructor(private dialog: MatDialog, private store: AngularFirestore,public  authService:  AuthService) { }
 
   newBirthday(): void {
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
@@ -61,6 +61,7 @@ export class BirthdayPageComponent {
     });
     dialogRef
       .afterClosed()
+      //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(user.uid).update(result.birthday));
       .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday));
   }
 }

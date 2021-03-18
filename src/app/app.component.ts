@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from './auth/auth.service';
+import { BirthdayDialogComponent, BirthdayDialogResult } from './birthday-dialog/birthday-dialog.component';
 
 
 
@@ -10,5 +14,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+ constructor(private dialog: MatDialog, private store: AngularFirestore,public  authService:  AuthService){}
 
+ newBirthday(): void {
+  const dialogRef = this.dialog.open(BirthdayDialogComponent, {
+    width: '270px',
+    data: {
+      birthday: {},
+    },
+  });
+  dialogRef
+    .afterClosed()
+    //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(user.uid).update(result.birthday));
+    .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday));
+}
 }
