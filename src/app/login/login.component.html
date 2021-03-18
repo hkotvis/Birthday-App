@@ -1,1 +1,63 @@
-<p>login works!</p>
+<!--
+<mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="data.birthday.name" />
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Password</mat-label>
+    <textarea matInput [(ngModel)]="data.birthday.notes"></textarea>
+</mat-form-field>
+
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="{ birthday: data.birthday }">OK</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button
+      *ngIf="data.enableDelete"
+      mat-fab
+      color="primary"
+      aria-label="Delete"
+      [mat-dialog-close]="{ birthday: data.birthday, delete: true }">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+-->
+<mat-card>
+  <form [formGroup]="signin">
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput  />
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+     </mat-form-field>
+     <br/>
+     <button mat-button >Login</button>
+   </form>
+</mat-card>
+
+<div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>Sign In</h3>
+        <div class="formGroup">
+          <input type="text" class="formControl" placeholder="Username" #userName required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="Password" #userPassword required>
+        </div>
+  
+        <!-- Calling login Api from AuthService -->
+        <div class="formGroup">
+          <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.login(userName.value, userPassword.value)">
+        </div>
+  
+       
+      </div>
+  
+    </div>
+  </div>
+  

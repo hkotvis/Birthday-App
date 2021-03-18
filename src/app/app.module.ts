@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { BirthdayDialogComponent } from './birthday-dialog/birthday-dialog.compo
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import {MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule } from '@angular/material/form-field';
@@ -44,8 +45,10 @@ import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
@@ -56,6 +59,7 @@ import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
     MatInputModule,
     BrowserAnimationsModule
   ],
