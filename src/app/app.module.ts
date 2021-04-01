@@ -25,6 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatChipsModule
   ],
   exports: [
     MatDatepickerModule,
@@ -61,7 +63,8 @@ import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatChipsModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

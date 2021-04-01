@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span *ngIf="data.enableDelete" >EDIT</span>
+  <span *ngIf="data.enableDelete">EDIT</span>
   <span *ngIf="!data.enableDelete">ADD</span>
 </mat-toolbar>
 <mat-form-field>
@@ -12,10 +12,15 @@
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<!--<mat-form-field>
-  <mat-label>Birthday</mat-label>
-  <textarea matInput [(ngModel)]="data.birthday.birthdate"></textarea>
-</mat-form-field>-->
+
+<mat-form-field>
+  <mat-chip-list  [selectable]="true" aria-label="cat" selectable multiple>
+    <mat-chip [(ngModel)]="data.birthday.categories" *ngFor="let category of categories" #chip="matChip" (click)="category.selected ? chip.deselect() : chip.selectViaInteraction()" [selected]="category.selected" [selectable]="true" class="leadr-category-chip" (selectionChange)="changeSelected($event, category)">
+      {{category.name}}
+    </mat-chip>
+  </mat-chip-list>
+</mat-form-field>
+
 <mat-form-field>
   <mat-label>Notes</mat-label>
   <textarea matInput [(ngModel)]="data.birthday.notes"></textarea>
