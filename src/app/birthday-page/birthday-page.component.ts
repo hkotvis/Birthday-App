@@ -25,7 +25,6 @@ const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
 })
 export class BirthdayPageComponent {
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
-  usersDb = this.store.collection('users').valueChanges({ idField: 'id' });
   title = 'birthday-app';
   
   editBirthday(birthday: Birthday): void {
@@ -45,18 +44,7 @@ export class BirthdayPageComponent {
     });
   }
 
-  constructor(private dialog: MatDialog, private store: AngularFirestore,public  authService:  AuthService) { }
+  constructor(private dialog: MatDialog, private store: AngularFirestore) { }
 
-  newBirthday(): void {
-    const dialogRef = this.dialog.open(BirthdayDialogComponent, {
-      width: '270px',
-      data: {
-        birthday: {},
-      },
-    });
-    dialogRef
-      .afterClosed()
-      //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(this.user.uid).update(result.birthday));
-      .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday));
-  }
+ 
 }

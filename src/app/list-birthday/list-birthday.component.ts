@@ -13,7 +13,7 @@ export class ListBirthdayComponent {
   @Output() edit = new EventEmitter<Birthday>();
   constructor(public  authService:  AuthService) { }
   get getBirthdayId(){
-    return this.birthday.id;
+    return this.birthday.birthId;
   }
   get getUserId(){
     if (typeof(this.authService.user.uid) == undefined) {

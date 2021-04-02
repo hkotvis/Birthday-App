@@ -18,12 +18,13 @@ export class AppComponent {
   const dialogRef = this.dialog.open(BirthdayDialogComponent, {
     width: '270px',
     data: {
-      birthday: {},
+      birthday: {
+        birthId: this.authService.user.uid
+      },
     },
   });
   dialogRef
     .afterClosed()
-    //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(this.user.uid).update(result.birthday));
     .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday));
 }
 }
