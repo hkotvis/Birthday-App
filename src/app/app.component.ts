@@ -3,9 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from './auth/auth.service';
 import { BirthdayDialogComponent, BirthdayDialogResult } from './birthday-dialog/birthday-dialog.component';
-
-
-
+import { User } from './auth/user';
 
 
 @Component({
@@ -25,7 +23,7 @@ export class AppComponent {
   });
   dialogRef
     .afterClosed()
-    //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(user.uid).update(result.birthday));
+    //.subscribe((result: BirthdayDialogResult) => this.store.collection('users').doc(this.user.uid).update(result.birthday));
     .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday));
 }
 }

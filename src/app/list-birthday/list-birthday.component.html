@@ -1,4 +1,4 @@
-<mat-card class="item" (dblclick)="edit.emit(birthday)">
+<mat-card class="item" *ngIf="(filterList)" (dblclick)="edit.emit(birthday)">
     <h3>{{ birthday.name }}</h3>
     <p>
       {{ birthday.birthdate }}<br> <!--{{birthday.notes}}-->
