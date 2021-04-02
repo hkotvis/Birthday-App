@@ -5,7 +5,7 @@ import { BirthdayDialogComponent, BirthdayDialogResult } from '../birthday-dialo
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { ListBirthdayComponent } from '../list-birthday/list-birthday.component';
-import { User } from '../auth/user';
+
 import { AuthService } from '../auth/auth.service';
 
 
@@ -24,23 +24,10 @@ const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
   styleUrls: ['./birthday-page.component.css']
 })
 export class BirthdayPageComponent {
- // bday_list = getObservable(this.store.collection('birthdays'));
-
-user : User = this.authService.user;
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   usersDb = this.store.collection('users').valueChanges({ idField: 'id' });
   title = 'birthday-app';
   
-  get getUserId() {
-    return this.authService.user.uid;
-  }
-  get getBirthdays(){
-    return this.bday_list.forEach(function (value) {
-      value;
-  });
-}
-
-
   editBirthday(birthday: Birthday): void {
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
       width: '270px',
