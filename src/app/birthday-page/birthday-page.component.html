@@ -1,14 +1,42 @@
-<app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" (click)="editBirthday(this.birthday)"></app-list-birthday>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="January">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=0 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="February">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=1 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="March">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=2 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="April">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=3 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="May">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=4 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="June">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=5 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="July">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=6 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="August">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=7 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="September">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=8 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="October">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=9 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="November">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=10 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+    <mat-tab label="December">
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=11 (click)="editBirthday(this.birthday)"></app-list-birthday>
+    </mat-tab>
+
+  </mat-tab-group>
+
+
 <p class="empty-label" *ngIf="(bday_list | async)?.length === 0">Empty list</p>
- <!--
-<div class="content-wrapper">
-    <button (click)="newBirthday()" mat-button>
-      <mat-icon>add</mat-icon> Add Birthday
-    </button>
-  
-    <div class="container-wrapper">
-      <div class="container">
-      
-      </div>
-  </div>
--->

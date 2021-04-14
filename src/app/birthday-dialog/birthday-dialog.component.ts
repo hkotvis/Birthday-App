@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Birthday } from '../list-birthday/iBirthday';
+import { Birthday, MyDate } from '../list-birthday/iBirthday';
 
 @Component({
   selector: 'app-birthday-dialog',
@@ -9,38 +9,32 @@ import { Birthday } from '../list-birthday/iBirthday';
 })
 export class BirthdayDialogComponent {
   private backupBirthday: Partial<Birthday> = { ...this.data.birthday };
- 
+  thisDate: MyDate = new MyDate();
+  showDate: Date;
   constructor(
     public dialogRef: MatDialogRef<BirthdayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: BirthdayDialogData
-  ) {}
-  changeSelected($event, category): void {
-    category.selected = $event.selected;
-  }
-  categories= [
-    {
-      name: 'Call',
-      selected: false
-    },
-    {
-      name: 'Text',
-      selected: false
-    },
-    {
-      name: 'Gift',
-      selected: false
+  ) {
+    try{
+      console.log(this.data.birthday.birthdate);
+      var subStr = data.birthday.birthdate.toString().match("=(.*),");
+      this.thisDate.seconds = Number(subStr[1]);
+      this.showDate  =new Date(this.thisDate.seconds*1000);
     }
-  ];
+    catch{
+      console.log("add new bday");
+    }
+  }
 
   cancel(): void {
-    if(this.data && this.data.birthday && this.data.birthday.name) {
+    try{
       this.data.birthday.name = this.backupBirthday.name;
       this.data.birthday.birthdate = this.backupBirthday.birthdate;
       this.data.birthday.notes = this.backupBirthday.notes;
       this.data.birthday.categories = this.backupBirthday.categories;
       this.dialogRef.close(this.data);
     }
-    else {
+    catch{
       this.dialogRef.close();
     }
   }

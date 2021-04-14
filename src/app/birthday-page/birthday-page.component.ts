@@ -4,9 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { BirthdayDialogComponent, BirthdayDialogResult } from '../birthday-dialog/birthday-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
-import { ListBirthdayComponent } from '../list-birthday/list-birthday.component';
-
-import { AuthService } from '../auth/auth.service';
 
 
 const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
@@ -26,7 +23,8 @@ const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
 export class BirthdayPageComponent {
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   title = 'birthday-app';
-  
+  myMonth=0;
+
   editBirthday(birthday: Birthday): void {
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
       width: '270px',
@@ -39,6 +37,7 @@ export class BirthdayPageComponent {
       if (result.delete) {
         this.store.collection('birthdays').doc(birthday.id).delete();
       } else {
+        console.log(result.birthday.birthdate)
         this.store.collection('birthdays').doc(birthday.id).update(birthday);
       }
     });

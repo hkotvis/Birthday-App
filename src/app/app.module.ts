@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTabsModule
   ],
   exports: [
     MatDatepickerModule,

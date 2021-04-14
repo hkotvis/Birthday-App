@@ -1,4 +1,4 @@
-import { Birthday } from './iBirthday';
+import { Birthday, MyDate } from './iBirthday';
 import { Component,  Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
@@ -10,21 +10,26 @@ import { AuthService } from '../auth/auth.service';
 export class ListBirthdayComponent {
   
   @Input()  birthday: Birthday;
+  @Input() myMonth: number;
   @Output() edit = new EventEmitter<Birthday>();
-  constructor(public  authService:  AuthService) { }
-  get getBirthdayId(){
-    return this.birthday.birthId;
-  }
-  get getUserId(){
-    if (typeof(this.authService.user.uid) == undefined) {
+  showDate = new Date();
+  constructor(public  authService:  AuthService) {}
+  thisDate: MyDate = new MyDate();
+  get filterList(){
+    try{
+      var subStr = this.birthday.birthdate.toString().match("=(.*),");
+      this.thisDate.seconds = Number(subStr[1]);
+      this.showDate  =new Date(this.thisDate.seconds*1000);
+      if(this.birthday.birthId.includes(this.authService.user.uid)){
+        if(this.showDate.getMonth()==this.myMonth){
+          return this.birthday;
+        }
+      }
+    }
+    catch(exception){      
       return null;
     }
-    else return this.authService.user.uid;
-  }
-
-  get filterList(){
-    if(this.getBirthdayId.includes(this.getUserId)) return this.birthday;
-    else return null;
+    
   }
 }
 

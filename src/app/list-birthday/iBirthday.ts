@@ -9,3 +9,8 @@ export interface Birthday {
       selected: boolean
     ];
   }
+
+  export class MyDate {
+    seconds: number;
+    nanoseconds: number;
+  }
