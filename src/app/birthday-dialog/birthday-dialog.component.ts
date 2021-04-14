@@ -32,7 +32,7 @@ export class BirthdayDialogComponent {
       this.data.birthday.birthdate = this.backupBirthday.birthdate;
       this.data.birthday.notes = this.backupBirthday.notes;
       this.data.birthday.categories = this.backupBirthday.categories;
-      this.dialogRef.close(this.data);
+      this.dialogRef.close();
     }
     catch{
       this.dialogRef.close();

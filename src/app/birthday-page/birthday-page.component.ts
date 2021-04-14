@@ -34,11 +34,17 @@ export class BirthdayPageComponent {
       },
     });
     dialogRef.afterClosed().subscribe((result: BirthdayDialogResult) => {
-      if (result.delete) {
-        this.store.collection('birthdays').doc(birthday.id).delete();
-      } else {
-        console.log(result.birthday.birthdate)
-        this.store.collection('birthdays').doc(birthday.id).update(birthday);
+      try{
+        if (result.delete) {
+          this.store.collection('birthdays').doc(birthday.id).delete();
+        } 
+        else {
+          console.log(result.birthday.birthdate)
+          this.store.collection('birthdays').doc(birthday.id).update(birthday);
+        }
+      }
+      catch{
+        console.log("Closed dialog box without saving or deleting");
       }
     });
   }
