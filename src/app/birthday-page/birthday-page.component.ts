@@ -27,7 +27,8 @@ export class BirthdayPageComponent {
   @Input() months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   editBirthday(birthday: Birthday): void {
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
-      width: '270px',
+      width: '315px',
+      panelClass: 'my-dialog',
       data: {
         birthday,
         enableDelete: true,

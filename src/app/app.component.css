@@ -6,32 +6,7 @@ mat-toolbar {
     margin-left: 10px;
   }
   
-  .content-wrapper {
-    max-width: 1400px;
-    margin: auto;
-  }
-  
-  .container-wrapper {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .container {
-    width: 400px;
-    margin: 0 25px 25px 0;
-  }
-  
-  .list {
-    border: solid 1px #ccc;
-    min-height: 60px;
-    border-radius: 4px;
-  }
-  
-  app-new-birthday {
-    margin-bottom: 30px;
-  }
-  
-  .empty-label {
+  .empty-label{
     font-size: 2em;
     padding-top: 10px;
     text-align: center;
@@ -41,3 +16,10 @@ mat-toolbar {
     flex: 1 1 auto;
   }
 
+  img {
+    display: block;
+    max-width:230px;
+    max-height:95px;
+    width: auto;
+    height: auto;
+  }

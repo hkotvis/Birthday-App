@@ -1,8 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-/*
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: url('https://acegif.com/wp-content/uploads/2020/05/confetti.gif') }
-*/
+
+.cdk-overlay-pane.my-dialog {
+    position: relative!important;
+}
+.close.mat-icon-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
+}
+
+.mat-button-focus-overlay {
+    background-color: transparent!important;
+}
+img {
+   
+    max-width:350px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+  }
 /*https://media4.giphy.com/media/XCghPXl7X1fnjMfaS8/source.gif*/
 /*https://acegif.com/wp-content/uploads/2020/05/confetti.gif*/

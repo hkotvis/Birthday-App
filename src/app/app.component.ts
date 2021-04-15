@@ -14,7 +14,8 @@ export class AppComponent {
 
  newBirthday(): void {
   const dialogRef = this.dialog.open(BirthdayDialogComponent, {
-    width: '270px',
+    width: '315px',
+    panelClass: 'my-dialog',
     data: {
       birthday: {
         birthId: this.authService.user.uid
