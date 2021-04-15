@@ -4,10 +4,7 @@ export interface Birthday {
     name: string;
     birthdate: Date;
     notes: string;
-    categories: [
-      name: string,
-      selected: boolean
-    ];
+    categories: Array<string>;
   }
 
   export class MyDate {

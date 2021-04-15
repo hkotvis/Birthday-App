@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Birthday } from '../list-birthday/iBirthday';
 import { MatDialog } from '@angular/material/dialog';
 import { BirthdayDialogComponent, BirthdayDialogResult } from '../birthday-dialog/birthday-dialog.component';
@@ -24,7 +24,7 @@ export class BirthdayPageComponent {
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   title = 'birthday-app';
   myMonth=0;
-
+  @Input() months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   editBirthday(birthday: Birthday): void {
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
       width: '270px',
@@ -51,5 +51,7 @@ export class BirthdayPageComponent {
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) { }
 
- 
+  idx(index: number, employee: any): any {
+    return index;
+    }
 }

@@ -14,19 +14,10 @@
 </mat-form-field>
 
 <mat-form-field>
-  <mat-chip-list  [selectable]="true" aria-label="cat" selectable multiple>
-    <mat-chip>
-      <i class="material-icons-round" color="primary">redeem</i><br><br/>
-    </mat-chip>
-    <mat-chip>
-      <i class="material-icons-round" color="primary">call</i>
-    </mat-chip>
-    <mat-chip>
-      <i class="material-icons-round" color="primary">textsms</i>
-    </mat-chip>
-    <mat-chip>
-      <i class="material-icons-round" color="primary">markunread_mailbox</i>
-    </mat-chip>
+  <mat-chip-list  aria-label="cat" selectable multiple>
+    <mat-chip #c="matChip" *ngFor="let option of catOptions" [selected]="setSelected(c)" [value]="option"  (click)="toggleSelection(c)">
+      <i class="material-icons-round" color="primary">{{option}}</i>
+  </mat-chip>
   </mat-chip-list>
 </mat-form-field>
 

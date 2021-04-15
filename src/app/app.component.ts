@@ -3,8 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from './auth/auth.service';
 import { BirthdayDialogComponent, BirthdayDialogResult } from './birthday-dialog/birthday-dialog.component';
-import { User } from './auth/user';
-
 
 @Component({
   selector: 'app-root',

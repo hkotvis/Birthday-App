@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input } from '@angular/core';
+import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Birthday, MyDate } from '../list-birthday/iBirthday';
 
@@ -11,8 +12,10 @@ export class BirthdayDialogComponent {
   private backupBirthday: Partial<Birthday> = { ...this.data.birthday };
   thisDate: MyDate = new MyDate();
   showDate: Date;
+  @Input() catOptions: string[] = ["call", "redeem", "textsms", "markunread_mailbox"];
   constructor(
     public dialogRef: MatDialogRef<BirthdayDialogComponent>,
+    private cdref: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: BirthdayDialogData
   ) {
     try{
@@ -25,6 +28,44 @@ export class BirthdayDialogComponent {
       console.log("add new bday");
     }
   }
+
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+  }
+
+setSelected(chip: MatChip){
+    try{
+      if(this.data.birthday.categories.includes(chip.value)) chip.selected = true;
+    }
+    catch{
+      chip.selected = false;
+    }
+  }
+
+  toggleSelection(chip: MatChip) {
+    chip.toggleSelected();
+    if(chip.selected){
+        try{
+
+          this.data.birthday.categories[this.data.birthday.categories.length] = chip.value;
+        }
+        catch{
+          this.data.birthday.categories = [chip.value];
+        }
+      
+    }
+    else if(!chip.selected){
+      try{
+        const index = this.data.birthday.categories.indexOf(chip.value);
+        if (index > -1) {
+          this.data.birthday.categories.splice(index, 1);
+        }
+      }
+      catch{
+        this.data.birthday.categories = [];
+      }
+    }
+ }
 
   cancel(): void {
     try{
