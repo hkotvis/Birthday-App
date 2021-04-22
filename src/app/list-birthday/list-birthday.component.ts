@@ -14,19 +14,22 @@ export class ListBirthdayComponent {
   @Output() edit = new EventEmitter<Birthday>();
   showDate = new Date();
   constructor(public  authService:  AuthService) {}
-  thisDate: MyDate = new MyDate();
+  thisDate: MyDate = new MyDate(); // need this to view Firestore timestamp as a Date
+
+  // filters to only display birthdays in specified myMonth
   get filterList(){
     try{
       var subStr = this.birthday.birthdate.toString().match("=(.*),");
       this.thisDate.seconds = Number(subStr[1]);
       this.showDate  =new Date(this.thisDate.seconds*1000);
+      // only look at birthdays associated with the user logged in
       if(this.birthday.birthId.includes(this.authService.user.uid)){
-        if(this.showDate.getMonth()==this.myMonth){
+        if(this.showDate.getMonth()==this.myMonth){ //months match
           return this.birthday;
         }
       }
     }
-    catch(exception){      
+    catch(exception){  // months don't match
       return null;
     }
     

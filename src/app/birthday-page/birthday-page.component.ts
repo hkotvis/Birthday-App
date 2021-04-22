@@ -2,18 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Birthday } from '../list-birthday/iBirthday';
 import { MatDialog } from '@angular/material/dialog';
 import { BirthdayDialogComponent, BirthdayDialogResult } from '../birthday-dialog/birthday-dialog.component';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-
-
-const getObservable = (collection: AngularFirestoreCollection<Birthday>) => {
-  const subject = new BehaviorSubject([]);
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Birthday[]) => {
-    subject.next(val);
-    console.log(subject.getValue());
-  });
-  return subject;
-};
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-birthday-page',
@@ -24,10 +13,14 @@ export class BirthdayPageComponent {
   bday_list = this.store.collection('birthdays').valueChanges({ idField: 'id' });
   title = 'birthday-app';
   myMonth=0;
+  // use this for looping instead of extra html
   @Input() months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  // clicking on a birthday
   editBirthday(birthday: Birthday): void {
+    //opens dialog box
     const dialogRef = this.dialog.open(BirthdayDialogComponent, {
       width: '315px',
+      // allows css change to inputs
       panelClass: 'my-dialog',
       data: {
         birthday,
@@ -36,10 +29,10 @@ export class BirthdayPageComponent {
     });
     dialogRef.afterClosed().subscribe((result: BirthdayDialogResult) => {
       try{
-        if (result.delete) {
+        if (result.delete) { //clicked delete button
           this.store.collection('birthdays').doc(birthday.id).delete();
         } 
-        else {
+        else { // clicked Save button
           console.log(result.birthday.birthdate)
           this.store.collection('birthdays').doc(birthday.id).update(birthday);
         }
@@ -51,8 +44,8 @@ export class BirthdayPageComponent {
   }
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) { }
-
-  idx(index: number, employee: any): any {
+// creates month number to check if a birthday's month is the same as the tab's month
+  idx(index: number): any {
     return index;
     }
 }

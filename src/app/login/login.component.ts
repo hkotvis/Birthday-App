@@ -18,9 +18,7 @@ export class LoginComponent {
   get passwordInput() { return this.signin.get('password'); } 
   user_list = this.store.collection('users').valueChanges({ idField: 'id' });
   
-  constructor( private store: AngularFirestore,public  authService:  AuthService) {
-  }
-
+  constructor( private store: AngularFirestore,public  authService:  AuthService) {}
 
 }
 

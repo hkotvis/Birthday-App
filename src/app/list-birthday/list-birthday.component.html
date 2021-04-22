@@ -4,3 +4,6 @@
       {{showDate | date:'MM/dd/yyyy'}}
     </p>
 </mat-card>
+<mat-card class="item" *ngIf="(filterList)" (dblclick)="edit.emit(birthday)">
+  <h3>None</h3>
+</mat-card>

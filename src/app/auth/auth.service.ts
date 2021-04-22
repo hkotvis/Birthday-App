@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  "../auth/user";
-import { BirthdayPageComponent } from '../birthday-page/birthday-page.component';
+import { BirthdayPageComponent } from '../birthday-page/birthday-page.component'; //need this for tabs
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthService {
    }
 
    async login(email: string, password: string) {
-    var result = await this.afAuth.signInWithEmailAndPassword(email, password)
+    await this.afAuth.signInWithEmailAndPassword(email, password)
     this.router.navigate(['/list']);
   }
 

@@ -22,7 +22,7 @@ export class BirthdayDialogComponent {
       console.log(this.data.birthday.birthdate);
       var subStr = data.birthday.birthdate.toString().match("=(.*),");
       this.thisDate.seconds = Number(subStr[1]);
-      this.showDate  =new Date(this.thisDate.seconds*1000);
+      this.showDate  =new Date(this.thisDate.seconds*1000); // formatted birthday to Date form
     }
     catch{
       console.log("add new bday");
@@ -33,6 +33,7 @@ export class BirthdayDialogComponent {
     this.cdref.detectChanges();
   }
 
+  // set selected categories
 setSelected(chip: MatChip){
     try{
       if(this.data.birthday.categories.includes(chip.value)) chip.selected = true;
@@ -41,7 +42,7 @@ setSelected(chip: MatChip){
       chip.selected = false;
     }
   }
-
+  // handle categories
   toggleSelection(chip: MatChip) {
     chip.toggleSelected();
     if(chip.selected){
