@@ -20,12 +20,18 @@ export class AuthService {
       }
     })
    }
-
+   // register with email/password
+   async register(email, password) {
+    await this.afAuth.createUserWithEmailAndPassword(email, password);
+    this.router.navigate(['/login']);
+     
+  }
+  // verify login credentials
    async login(email: string, password: string) {
-    await this.afAuth.signInWithEmailAndPassword(email, password)
+    await this.afAuth.signInWithEmailAndPassword(email, password);
     this.router.navigate(['/list']);
   }
-
+// logout current user
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');

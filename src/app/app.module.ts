@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     ListBirthdayComponent,
     BirthdayDialogComponent,
     LoginComponent,
-    BirthdayPageComponent
+    BirthdayPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
