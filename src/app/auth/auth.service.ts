@@ -23,8 +23,13 @@ export class AuthService {
    }
    // register with email/password
    async register(email, password) {
-    await this.afAuth.createUserWithEmailAndPassword(email, password);
-    this.router.navigate(['/list']);
+    await this.afAuth.createUserWithEmailAndPassword(email, password) 
+    .then(() => {
+      this.router.navigate(['/list'])
+    }).catch(_error => {
+      this.error = _error
+      this.router.navigate(['/register'])
+    })
   }
   // verify login credentials
    async login(email: string, password: string) {

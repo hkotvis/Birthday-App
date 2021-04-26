@@ -10,16 +10,27 @@
     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
       <div *ngIf="f.email.errors.required">Email is required</div>
       <div *ngIf="f.email.errors.pattern">Email formatted incorrectly</div>
+  </div> 
+  <div class="invalid-feedback" *ngIf="authService.error.message==inUse">
+    {{authService.error.message}}
   </div>
     <br/>
     <mat-form-field>
-          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" class="formControl" #userPassword required formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" class="formControl" required formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-    </div>
+    </div> <br/> 
+    <mat-form-field>
+      <input matInput placeholder="Confirm Password" [type]="hide ? 'password' : 'text'" class="formControl" #userPassword required formControlName="confirm_password" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+    <div *ngIf="f.confirm_password.errors.required">Password is required</div>
+    <div *ngIf="f.confirm_password.errors.confirmMatch">Passwords must match</div>
+  </div>
       <br/><br/><br/>
       <button mat-raised-button color="primary" (click)="authService.register(userEmail.value, userPassword.value)">Create Account</button>
       <br/><br/><br/><br/>
