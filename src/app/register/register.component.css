@@ -1,0 +1,18 @@
+.invalid-feedback{
+    color: red;
+    font-size: 11px;
+}
+.mat-card{
+    background-color:rgba(255,255,255, 0.95);
+    margin: 3%;
+}
+form{
+    text-align: center;
+}
+h2{
+    color: #3500b3;
+}
+i {
+    font-size: 50px;
+    color: #3500b3;
+  }

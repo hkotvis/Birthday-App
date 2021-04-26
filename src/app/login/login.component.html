@@ -1,17 +1,28 @@
 <mat-card>
-  <form [formGroup]="signin">
+  <form [formGroup]="signin" (ngSubmit)="onSubmit()">
     <br/><br/>
       <img src="../../assets/photos/birthday-planner-login-black.png" alt="BIRTHDAY PLANNER"><br><br/>
     <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput #userEmail required />
+        <input  matInput class="formControl" #userEmail required  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
     </mat-form-field>
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.pattern">Email formatted incorrectly</div>
+  </div>
     <br/>
     <mat-form-field>
-         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" #userPassword required>
+         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" #userPassword required [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
      </mat-form-field>
-     <br/><br/><br/>
+     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+     </div>
+     <br/><br/>
+     <div class="invalid-feedback" *ngIf="authService.error.message == userNotFound"> Email not found </div>
+     <div class="invalid-feedback" *ngIf="authService.error.message == badPass">Password invalid </div>
+     <br/>
      <button mat-raised-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
      <br/><br/><br/><br/>
    </form>

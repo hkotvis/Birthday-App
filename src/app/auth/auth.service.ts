@@ -9,6 +9,7 @@ import { BirthdayPageComponent } from '../birthday-page/birthday-page.component'
 })
 export class AuthService {
   user: User;
+  error: { name: string, message: string } = { name: '', message: '' };
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router) {
     this.afAuth.authState.subscribe(user => {
       this.user= user;
@@ -23,13 +24,17 @@ export class AuthService {
    // register with email/password
    async register(email, password) {
     await this.afAuth.createUserWithEmailAndPassword(email, password);
-    this.router.navigate(['/login']);
-     
+    this.router.navigate(['/list']);
   }
   // verify login credentials
    async login(email: string, password: string) {
-    await this.afAuth.signInWithEmailAndPassword(email, password);
-    this.router.navigate(['/list']);
+    await this.afAuth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      this.router.navigate(['/list'])
+    }).catch(_error => {
+      this.error = _error
+      this.router.navigate(['/'])
+    })
   }
 // logout current user
   async logout(){
@@ -37,7 +42,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
-
+  
   get isLoggedIn(): boolean {
     const  user  =  JSON.parse(localStorage.getItem('user'));
     return  user  !==  null;

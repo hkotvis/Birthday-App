@@ -1,30 +1,28 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-  
-      <div class="authBlock">
-        <h3>Sign Up</h3>
-  
-        <div class="formGroup">
-          <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-        </div>
-  
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" #userPass required>
-        </div>
-  
-        <div class="formGroup">
-          <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.register(userEmail.value, userPass.value)">
-        </div>
-  
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
-        </div>
-  
-       
-  
-      <div class="redirectToLogin">
-        <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
-      </div>
-    </div>
-  
+
+<mat-card>
+  <form [formGroup]="register" (ngSubmit)="onSubmit()">
+    <br/><br/>
+      <img src="../../assets/photos/birthday-planner-login-black.png" alt="BIRTHDAY PLANNER"><br><br/>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input  matInput class="formControl" #userEmail required  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+    </mat-form-field>
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.pattern">Email formatted incorrectly</div>
   </div>
+    <br/>
+    <mat-form-field>
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" class="formControl" #userPassword required formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+    </div>
+      <br/><br/><br/>
+      <button mat-raised-button color="primary" (click)="authService.register(userEmail.value, userPassword.value)">Create Account</button>
+      <br/><br/><br/><br/>
+    </form>
+    <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
+</mat-card>
