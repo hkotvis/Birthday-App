@@ -23,8 +23,7 @@
      <div class="invalid-feedback" *ngIf="authService.error.message == userNotFound"> Email not found </div>
      <div class="invalid-feedback" *ngIf="authService.error.message == badPass">Password invalid </div>
      <br/>
-     <button mat-raised-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
-     <br/><br/><br/><br/>
+     <button mat-raised-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Log In</button>
+     <br/><br/><br/><br/> <span class="homelinks"> No account?<a routerLink="/register"> Register!</a></span>
    </form>
-   <a routerLink="/register">No account? Sign up here!</a>
 </mat-card>
