@@ -1,8 +1,5 @@
   <mat-tab-group dynamicHeight>
     <mat-tab  *ngFor="let m of months; let i = index; trackBy:idx"  [label]="m">
-      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=i (click)="editBirthday(this.birthday)"></app-list-birthday>   
+      <app-list-birthday *ngFor="let birthday of bday_list | async" [birthday]="birthday" [myMonth]=i (click)="editBirthday(this.birthday)"></app-list-birthday>  
     </mat-tab>
   </mat-tab-group>
-
-
-  <p class="empty-label">Empty list</p>

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Birthday, MyDate } from '../list-birthday/iBirthday';
@@ -12,7 +13,19 @@ export class BirthdayDialogComponent {
   private backupBirthday: Partial<Birthday> = { ...this.data.birthday };
   thisDate: MyDate = new MyDate();
   showDate: Date;
+  formBuilder = new FormBuilder;
+  submitted = false;
+  loading = false;
+  maxDate = new Date();
+  minDate = new Date(this.maxDate.getFullYear()-150, this.maxDate.getMonth(), this.maxDate.getDate());
+
   @Input() catOptions: string[] = ["call", "redeem", "textsms", "markunread_mailbox"];
+ // validate user input
+ dialogForm: FormGroup = this.formBuilder.group({
+  name: new FormControl('', [Validators.required]),
+  bdate: new FormControl('', [ Validators.required ])
+});
+get f() { return this.dialogForm.controls; }
   constructor(
     public dialogRef: MatDialogRef<BirthdayDialogComponent>,
     private cdref: ChangeDetectorRef,
@@ -80,6 +93,16 @@ setSelected(chip: MatChip){
       this.dialogRef.close();
     }
   }
+
+  onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.dialogForm.invalid) {
+      return;
+    }
+    this.loading = true;
+  }
+
 }
 
 export interface BirthdayDialogData {

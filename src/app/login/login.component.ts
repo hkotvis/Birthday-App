@@ -17,8 +17,7 @@ export class LoginComponent {
   // validate user input
   signin: FormGroup = this.formBuilder.group({
     email: new FormControl('', [Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$'), Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6) ]),
-    error: new FormControl('')
+    password: new FormControl('', [Validators.required, Validators.minLength(6) ])
   });
   get emailInput() { return this.signin.get('email'); }
   get passwordInput() { return this.signin.get('password'); } 

@@ -1,18 +1,21 @@
+
 <button class="close" mat-icon-button (click)="cancel()"><mat-icon>close</mat-icon></button>
 <h2 mat-dialog-title *ngIf="!data.enableDelete" color="primary">ADD BIRTHDAY</h2>
 <h2 mat-dialog-title *ngIf="data.enableDelete" color="primary">EDIT BIRTHDAY</h2>
 <div mat-dialog-content>
-<mat-form-field>
-  <mat-label>Name</mat-label>
-  <input matInput [(ngModel)]="data.birthday.name" />
-</mat-form-field>
-<mat-form-field appearance="standard">
-  <mat-label>Birthday</mat-label>
-  <input matInput [matDatepicker]="picker"  [ngModel]="showDate" (ngModelChange)="data.birthday.birthdate = $event" />
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-
+<form [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.birthday.name" required class="formControl" formControlName="name" [ngClass]="{ 'is-invalid': f.name.errors }"/>
+  </mat-form-field>
+                                                                              
+  <mat-form-field appearance="standard">
+    <mat-label>Birthday</mat-label>
+    <input readonly matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"  [ngModel]="showDate" (ngModelChange)="data.birthday.birthdate = $event" required class="formControl" formControlName="bdate" [ngClass]="{ 'is-invalid': f.bdate.errors }"/>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>  
+</form>
 <mat-form-field>
   <mat-chip-list  aria-label="cat" selectable multiple>
     <mat-chip #c="matChip" *ngFor="let option of catOptions" [selected]="setSelected(c)" [value]="option"  (click)="toggleSelection(c)">
@@ -27,7 +30,7 @@
 </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button color="primary" mat-raised-button [mat-dialog-close]="{ birthday: data.birthday }"><mat-icon>save</mat-icon> Save </button>
+  <button color="primary" mat-raised-button [mat-dialog-close]="{ birthday: data.birthday }" [disabled]="dialogForm.invalid"><mat-icon>save</mat-icon> Save </button>
   <button
     *ngIf="data.enableDelete"
     mat-mini-fab
