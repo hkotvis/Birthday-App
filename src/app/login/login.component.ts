@@ -32,6 +32,7 @@ export class LoginComponent {
       return;
     }
     this.loading = true;
+    this.authService.error.message =''; // clear error message on success so message is gone on logout
   }
 
   userNotFound: string = "There is no user record corresponding to this identifier. The user may have been deleted.";
