@@ -26,7 +26,9 @@ export class RegisterComponent implements OnInit {
     public authService: AuthService
   ) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.authService.error.message =''; // clear error message on success so message is gone on logout
+  }
   get f() { return this.register.controls; }
 
   onSubmit() {
