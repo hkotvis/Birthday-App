@@ -1,6 +1,4 @@
 <mat-card class="item" *ngIf="(filterList)" (dblclick)="edit.emit(birthday)">
-    <h3>{{ birthday.name }}</h3>
-    <p>
-      {{showDate | date:'MM/dd/yyyy'}}
-    </p>
+    <h3> <span class="bold">{{ birthday.name }}</span>  &nbsp; {{showDate | date:'MM/dd/yyyy'}} </h3>
+    <p>{{birthday.notes}} </p>
 </mat-card>

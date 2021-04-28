@@ -14,14 +14,14 @@ export class BirthdayDialogComponent {
   thisDate: MyDate = new MyDate();
   showDate: Date;
   formBuilder = new FormBuilder;
-  submitted = false;
-  loading = false;
-  maxDate = new Date();
-  minDate = new Date(this.maxDate.getFullYear()-150, this.maxDate.getMonth(), this.maxDate.getDate());
+  submitted: boolean;
+  loading: boolean; 
+  maxDate: Date;
+  minDate: Date;
 
   @Input() catOptions: string[] = ["call", "redeem", "textsms", "markunread_mailbox"];
  // validate user input
- dialogForm: FormGroup = this.formBuilder.group({
+ dialogForm= this.formBuilder.group({
   name: new FormControl('', [Validators.required]),
   bdate: new FormControl('', [ Validators.required ])
 });
@@ -33,9 +33,16 @@ get f() { return this.dialogForm.controls; }
   ) {
     try{
       console.log(this.data.birthday.birthdate);
+      this.maxDate = new Date();
       var subStr = data.birthday.birthdate.toString().match("=(.*),");
       this.thisDate.seconds = Number(subStr[1]);
       this.showDate  =new Date(this.thisDate.seconds*1000); // formatted birthday to Date form
+     // prevents closing dialog box unless X is clicked
+      dialogRef.disableClose = true;
+      this.submitted = false;
+      this.loading = false;
+      this.maxDate = new Date();
+      this.minDate = new Date(this.maxDate.getFullYear()-150, this.maxDate.getMonth(), this.maxDate.getDate());
     }
     catch{
       console.log("add new bday");
@@ -43,7 +50,7 @@ get f() { return this.dialogForm.controls; }
   }
 
   ngAfterContentChecked() {
-    this.cdref.detectChanges();
+    this.cdref.detectChanges(); // error handling
   }
 
   // set selected categories

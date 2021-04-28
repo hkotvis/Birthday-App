@@ -7,3 +7,6 @@ mat-form-field{
 .mat-dialog-actions{
     display: unset;
 }
+mat-chip{
+    cursor: pointer;
+}

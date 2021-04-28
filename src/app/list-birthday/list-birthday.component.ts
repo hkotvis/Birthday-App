@@ -12,9 +12,9 @@ export class ListBirthdayComponent {
   @Input()  birthday: Birthday;
   @Input() myMonth: number;
   @Output() edit = new EventEmitter<Birthday>();
-  showDate = new Date();
-  constructor(public  authService:  AuthService) {}
+  showDate: Date;
   thisDate: MyDate = new MyDate(); // need this to view Firestore timestamp as a Date
+  constructor(public  authService:  AuthService) {}
 
   // filters to only display birthdays in specified myMonth
   get filterList(){

@@ -1,25 +1,26 @@
-mat-toolbar {
-    margin-bottom: 20px;
-  }
-  
-  mat-toolbar > span {
-    margin-left: 10px;
-  }
-  
-  .empty-label{
-    font-size: 2em;
-    padding-top: 10px;
-    text-align: center;
-    opacity: 0.2;
-  }
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+mat-toolbar-row {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 
-  img {
-    display: block;
-    max-width:230px;
-    max-height:95px;
-    width: auto;
-    height: auto;
-  }
+mat-toolbar > span {
+  margin-left: 10px;
+}
+  
+.empty-label{
+  font-size: 2em;
+  padding-top: 10px;
+  text-align: center;
+  opacity: 0.2;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}

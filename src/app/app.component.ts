@@ -23,8 +23,14 @@ export class AppComponent {
       },
     },
   });
-  dialogRef
-    .afterClosed()
-    .subscribe((result: BirthdayDialogResult) => this.store.collection('birthdays').add(result.birthday)); // saves to db
-}
+  dialogRef.disableClose = true;
+      dialogRef.afterClosed().subscribe((result: BirthdayDialogResult) => {
+        try{
+          this.store.collection('birthdays').add(result.birthday); // saves to db
+        }
+        catch{ // prevents console error
+          console.log("Closed dialog box without adding birthday"); // don't add
+        }
+      });
+  }
 }

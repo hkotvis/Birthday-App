@@ -25,8 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { BirthdayPageComponent } from './birthday-page/birthday-page.component';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatChipsModule} from '@angular/material/chips';
+import { MatTabsModule} from '@angular/material/tabs';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
