@@ -19,9 +19,10 @@ export class ListBirthdayComponent {
   // filters to only display birthdays in specified myMonth
   get filterList(){
     try{
+      // get seconds portion from timestamp to show correct date
       var subStr = this.birthday.birthdate.toString().match("=(.*),");
       this.thisDate.seconds = Number(subStr[1]);
-      this.showDate  =new Date(this.thisDate.seconds*1000);
+      this.showDate  =new Date(this.thisDate.seconds*1000);// convert to Date
       // only look at birthdays associated with the user logged in
       if(this.birthday.birthId.includes(this.authService.user.uid)){
         if(this.showDate.getMonth()==this.myMonth){ //months match

@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.error.message =''; // clear error message on success so message is gone on logout
+    
   }
   get f() { return this.register.controls; }
 
@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
         return;
     }
     this.loading = true;
+    this.authService.error.message =''; // clear error message on success so message is gone on logout
   }
   inUse: string = "The email address is already in use by another account.";
 }

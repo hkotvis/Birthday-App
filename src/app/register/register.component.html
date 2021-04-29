@@ -32,7 +32,7 @@
     <div *ngIf="f.confirm_password.errors.confirmMatch">Passwords must match</div>
   </div>
       <br/><br/><br/>
-      <button mat-raised-button color="primary" (click)="authService.register(userEmail.value, userPassword.value)">Create Account</button>
+      <button mat-raised-button color="primary" (click)="authService.register(userEmail.value, userPassword.value)" [disabled]="register.invalid">Create Account</button>
       <br/><br/><br/><br/>
       <span class="homelinks">Already have an account? <a class="redirect" routerLink="/login">Log in!</a></span>
     </form>
